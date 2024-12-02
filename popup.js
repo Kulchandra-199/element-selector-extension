@@ -20,6 +20,10 @@ const startBtn = document.getElementById("startBtn");
 const test = document.getElementById("test");
 const current = document.getElementById("current");
 const addCurrentBtn = document.getElementById("addCurrentBtn");
+const signInBtn = document.getElementById("signInBtn");
+const authScreen = document.getElementById("authScreen");
+const email = document.getElementById("email");
+const password = document.getElementById("password");
 
 // ****************************
 // Initialization and State Updates
@@ -135,11 +139,39 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 // Navigation and State Management
 // ****************************
 
+signInBtn.addEventListener("click", () => {
+  // email.value.trim();
+  // password.value.trim();
+
+  // if (email.value.trim() && password.value.trim()) {
+  // chrome.runtime.sendMessage(
+  //   {
+  //     action: "login",
+  //     email: email.value.trim(),
+  //     password: password.value.trim(),
+  //   },
+  //   (response) => {
+  //     if (response.success) {
+  //       mainScreen.classList.remove("hidden");
+  //       authScreen.classList.add("hidden");
+  //     } else {
+  //       alert("Invalid email or password!");
+  //     }
+  //   }
+  // );
+  mainScreen.classList.remove("hidden");
+  authScreen.classList.add("hidden");
+  // } else {
+  //   alert("Please enter an email and password!");
+  // }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     const currentTab = tabs[0];
     if (currentTab) {
       const currentUrl = currentTab.url;
+      const { origin } = new URL(currentUrl);
 
       // Extract and format the website name
       const websiteName = getWebsiteName(currentUrl);
@@ -153,6 +185,7 @@ addCurrentBtn.addEventListener("click", () => {
     const currentTab = tabs[0];
     if (currentTab) {
       const currentUrl = currentTab.url;
+      const { origin } = new URL(currentUrl);
 
       // Extract and format the website name
       const websiteName = getWebsiteName(currentUrl);
@@ -160,7 +193,7 @@ addCurrentBtn.addEventListener("click", () => {
       const newWebsite = {
         id: Date.now(),
         name: websiteName,
-        url: currentTab.url,
+        url: origin,
         identifiers: [],
       };
       websites.push(newWebsite);

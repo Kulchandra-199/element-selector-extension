@@ -4,43 +4,43 @@ let currentIdentifier = null;
 
 let selectedElements = {};
 
-(async function () {
-  // Function to fetch data from the endpoint
-  async function fetchData() {
-    try {
-      const response = await fetch("http://localhost:3000/posts"); // Replace with your API URL
-      if (!response.ok)
-        throw new Error(`HTTP error! status: ${response.status}`);
+// (async function () {
+//   // Function to fetch data from the endpoint
+//   async function fetchData() {
+//     try {
+//       const response = await fetch("http://localhost:3000/posts"); // Replace with your API URL
+//       if (!response.ok)
+//         throw new Error(`HTTP error! status: ${response.status}`);
 
-      const data = await response.json();
-      console.log("Fetched data:", data);
+//       const data = await response.json();
+//       console.log("Fetched data:", data);
 
-      // Process the fetched data
-      processWebsites(data);
-    } catch (error) {
-      console.error("Failed to fetch website data:", error);
-    }
-  }
+//       // Process the fetched data
+//       processWebsites(data);
+//     } catch (error) {
+//       console.error("Failed to fetch website data:", error);
+//     }
+//   }
 
-  // Function to process the list of websites
-  function processWebsites(data) {
-    // Example: Log website names and IDs
-    data.forEach((site) => {
-      console.log(`Website: ${site.name}, ID: ${site.id}`);
-    });
+//   // Function to process the list of websites
+//   function processWebsites(data) {
+//     // Example: Log website names and IDs
+//     data.forEach((site) => {
+//       console.log(`Website: ${site.name}, ID: ${site.id}`);
+//     });
 
-    // You can also store the data in `chrome.storage` for later use
-    chrome.storage.local.set({ websites: data }, () => {
-      console.log("Website data saved locally.");
-    });
-  }
+//     // You can also store the data in `chrome.storage` for later use
+//     chrome.storage.local.set({ websites: data }, () => {
+//       console.log("Website data saved locally.");
+//     });
+//   }
 
-  // Check if the content script is running in the main frame
-  if (window === window.top) {
-    console.log("Page loaded:", window.location.href);
-    await fetchData(); // Fetch the data when the page loads
-  }
-})();
+//   // Check if the content script is running in the main frame
+//   if (window === window.top) {
+//     console.log("Page loaded:", window.location.href);
+//     await fetchData(); // Fetch the data when the page loads
+//   }
+// })();
 
 function createTooltip(element, identifier) {
   // Remove existing tooltips

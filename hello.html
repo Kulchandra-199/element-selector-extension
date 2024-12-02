@@ -7,73 +7,115 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@heroicons/v1/solid/index.min.js"></script>
+    <style>
+        body {
+            width: 400px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body class="bg-gray-900 text-gray-100 font-['Inter']">
-    <div id="app" class="container mx-auto p-4 min-h-screen flex items-center justify-center">
-
+    <div id="app" class="p-4 min-h-[400px] max-h-[600px] flex items-center justify-center">
+        <div id="authScreen" class="w-full bg-gray-800 rounded-xl shadow-2xl p-6 space-y-6 relative">
+            <div class="text-center">
+                <h2 class="text-2xl font-extrabold text-indigo-300">
+                    Sign in to your account
+                </h2>
+                <p class="mt-2 text-sm text-gray-400">
+                    Or <a href="#" class="font-medium text-indigo-400 hover:text-indigo-300 transition-colors duration-200">create an account</a>
+                </p>
+            </div>
+            <div class="bg-gray-700 py-6 px-4 shadow-md rounded-lg">
+                <form class="space-y-4" action="#" method="POST">
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-300">Email address</label>
+                        <div class="mt-1">
+                            <input id="email" name="email" type="email" autocomplete="email" required class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-600 placeholder-gray-400 text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-gray-800 transition duration-200 ease-in-out" placeholder="Enter your email address">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-300">Password</label>
+                        <div class="mt-1">
+                            <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-600 placeholder-gray-400 text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-gray-800 transition duration-200 ease-in-out" placeholder="Enter your password">
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded bg-gray-700">
+                            <label for="remember_me" class="ml-2 block text-sm text-gray-300">Remember me</label>
+                        </div>
+                        <div class="text-sm">
+                            <a href="#" class="font-medium text-indigo-400 hover:text-indigo-300 transition-colors duration-200">Forgot your password?</a>
+                        </div>
+                    </div>
+                    <div>
+                        <button id="signInBtn" type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-200 ease-in-out">Sign in</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <!-- Main screen -->
-        <div id="mainScreen" class="w-full max-w-md bg-gray-800 rounded-lg shadow-xl p-6 space-y-6 relative">
+        <div id="mainScreen" class="hidden w-full bg-gray-800 rounded-xl shadow-2xl p-6 space-y-6 relative">
             <!-- User greeting and settings dropdown -->
-            <div class="absolute top-2 right-2 flex items-center space-x-2">
+            <div class="absolute top-4 right-4 flex items-center space-x-4">
                 <span class="text-sm text-gray-300">Hello, User</span>
                 <div class="relative">
                     <button id="settingsDropdown" class="text-gray-400 hover:text-gray-200 transition-colors duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
                         </svg>
                     </button>
                     <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-gray-700 rounded-md shadow-lg z-10">
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600">Sign Out</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600">Vaah-Scraper</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600 transition duration-200 ease-in-out">Sign Out</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600 transition duration-200 ease-in-out">Vaah-Scraper</a>
                     </div>
                 </div>
             </div>
-
-            <h2 class="text-3xl font-bold text-center text-blue-400">Managed Domains</h2>
-            <div class="space-y-2">
+            <h2 class="text-2xl font-bold text-center text-indigo-300">Managed Domains</h2>
+            <div class="space-y-4">
                 <div class="flex justify-between text-sm font-medium text-gray-400 px-2">
                     <span>Website Name</span>
                     <span>URL</span>
                 </div>
-                <ul id="websites" class="space-y-4 max-h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800"></ul>
+                <ul id="websites" class="space-y-2 max-h-48 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800 pr-2"></ul>
             </div>
-            <div class="main-screen-buttons flex gap-2">
-                <button id="addCurrentBtn" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <div class="main-screen-buttons flex gap-4">
+                <button id="addCurrentBtn" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-3 rounded-lg transition duration-300 ease-in-out flex items-center justify-center shadow-md text-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
                     </svg>
                     Add <span id="current" class="ml-1"></span>
                 </button>
             </div>
-            <button id="addNewBtn" class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <button id="addNewBtn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center shadow-md text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
                 </svg>
                 Add New
             </button>
         </div>
-
         <!-- Add domain screen -->
-        <div id="addNewScreen" class="hidden w-full max-w-md bg-gray-800 rounded-lg shadow-xl p-6 space-y-6">
-            <h2 class="text-2xl font-bold text-center text-blue-400">Add New Website</h2>
+        <div id="addNewScreen" class="hidden w-full bg-gray-800 rounded-xl shadow-2xl p-6 space-y-6">
+            <h2 class="text-2xl font-bold text-center text-indigo-300">Add New Website</h2>
             <form id="addNewForm" class="space-y-4">
                 <div>
                     <label for="websiteName" class="block text-sm font-medium text-gray-300 mb-1">Website Name</label>
-                    <input type="text" id="websiteName" placeholder="Enter website name" required class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400">
+                    <input type="text" id="websiteName" placeholder="Enter website name" required class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white placeholder-gray-400 transition duration-200 ease-in-out">
                 </div>
                 <div>
                     <label for="websiteUrl" class="block text-sm font-medium text-gray-300 mb-1">Website URL</label>
-                    <input type="url" id="websiteUrl" placeholder="Enter website URL" required class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400">
+                    <input type="url" id="websiteUrl" placeholder="Enter website URL" required class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white placeholder-gray-400 transition duration-200 ease-in-out">
                 </div>
                 <div class="flex space-x-4">
-                    <button type="submit" class="flex-1 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <button type="submit" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center shadow-md text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                         </svg>
                         Save
                     </button>
-                    <button type="button" id="cancelBtn" class="flex-1 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <button type="button" id="cancelBtn" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center shadow-md text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                         Cancel
@@ -81,29 +123,28 @@
                 </div>
             </form>
         </div>
-
         <!-- Add identifier screen -->
-        <div id="identifierSection" class="hidden w-full max-w-md bg-gray-800 rounded-lg shadow-xl p-6 space-y-6">
-            <h2 id="identifierHeading" class="text-2xl font-bold text-blue-400 mb-4"></h2>
-            <ul id="identifierList" class="space-y-3 mb-6 max-h-48 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800"></ul>
-            <div class="flex space-x-4">
-                <input type="text" id="identifierInput" placeholder="Enter identifier name" class="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400">
-                <button id="addIdentifierBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+        <div id="identifierSection" class="hidden w-full bg-gray-800 rounded-xl shadow-2xl p-6 space-y-6">
+            <h2 id="identifierHeading" class="text-2xl font-bold text-indigo-300 mb-4"></h2>
+            <ul id="identifierList" class="space-y-2 mb-4 max-h-40 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800 pr-2"></ul>
+            <div class="flex space-x-2">
+                <input type="text" id="identifierInput" placeholder="Enter identifier name" class="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white placeholder-gray-400 transition duration-200 ease-in-out">
+                <button id="addIdentifierBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center shadow-md text-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
                     </svg>
                     Add
                 </button>
             </div>
-            <button id="backBtn" class="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <button id="backBtn" class="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center shadow-md text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                 </svg>
                 Back
             </button>
         </div>
-
     </div>
     <script src="popup.js"></script>
 </body>
 </html>
+
