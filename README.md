@@ -8,6 +8,7 @@ A lightweight Chrome extension designed to simplify the process of identifying a
 - **🏷️ Custom Identifiers**: Assign unique identifiers to elements before selecting them, making it easy to map business logic to DOM elements.
 - **💾 Automatic Class Extraction**: When you click an element, the extension automatically simplifies the selection process by capturing the element's class names.
 - **📦 Local Storage Support**: Saves your selected element data (identifier + class names) locally, ensuring you don't lose your work during a session.
+- **🚀 Mass Scraping Ready**: Designed to help you quickly identify patterns and selectors needed to mass scrape websites efficiently.
 
 ## Installation
 
@@ -39,6 +40,13 @@ A lightweight Chrome extension designed to simplify the process of identifying a
 -   **Web Scraping**: Quickly gather selectors for tools like Puppeteer, Playwright, or Beautiful Soup.
 -   **Test Automation**: Identify stable selectors for your Selenium or Cypress tests.
 -   **Development**: Rapidly inspect and reference DOM elements during frontend development.
+
+## To-Dos
+
+-   [ ] Add export functionality (JSON/CSV) for selected elements.
+-   [ ] Implement a more advanced selector generation strategy (e.g., ID > Class > XPath).
+-   [ ] Add a UI to view and manage saved selectors directly in the popup.
+
 
 ## Tech Stack
 
